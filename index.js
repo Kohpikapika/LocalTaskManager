@@ -28,6 +28,41 @@ app.post('/tasks', (req, res) => {
   res.json({ message: 'Task added' });
 });
 
+// 完了状態更新（PUT）
+app.put('/tasks/:id', (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  if (typeof completed !== 'boolean') {
+    return res.status(400).json({ message: 'completed must be boolean' });
+  }
+
+  const result = db
+    .prepare('UPDATE tasks SET completed = ? WHERE id = ?')
+    .run(completed ? 1 : 0, id);
+
+  if (result.changes === 0) {
+    return res.status(404).json({ message: 'Task not found' });
+  }
+
+  res.json({ message: 'Task updated' });
+});
+
+// 削除（DELETE）
+app.delete('/tasks/:id', (req, res) => {
+  const { id } = req.params;
+
+  const result = db
+    .prepare('DELETE FROM tasks WHERE id = ?')
+    .run(id);
+
+  if (result.changes === 0) {
+    return res.status(404).json({ message: 'Task not found' });
+  }
+
+  res.json({ message: 'Task deleted' });
+});
+
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });

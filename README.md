@@ -15,6 +15,11 @@ and backend fundamentals.
 - Express
 - SQLite
 
+## API Endpoints
+- GET /tasks
+- POST /tasks
+- PUT /tasks/:id
+- DELETE /tasks/:id
+
 ## Next
-- Add update/delete
 - Connect with frontend
