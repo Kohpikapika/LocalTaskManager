@@ -1,12 +1,16 @@
-const express = require('express');
-const Database = require('better-sqlite3');
+import express from 'express';
+import cors from 'cors';
+import Database from 'better-sqlite3';
 
 const app = express();
 const db = new Database('db.sqlite');
 
+app.use(cors());
 app.use(express.json());
 
-// table作成
+app.use(express.static('public'));
+
+// Create table
 db.prepare(`
   CREATE TABLE IF NOT EXISTS tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,20 +19,20 @@ db.prepare(`
   )
 `).run();
 
-// 一覧取得
+// Get list
 app.get('/tasks', (req, res) => {
   const tasks = db.prepare('SELECT * FROM tasks').all();
   res.json(tasks);
 });
 
-// 追加
+// Add
 app.post('/tasks', (req, res) => {
   const { title } = req.body;
   db.prepare('INSERT INTO tasks (title) VALUES (?)').run(title);
   res.json({ message: 'Task added' });
 });
 
-// 完了状態更新（PUT）
+// Update status（PUT）
 app.put('/tasks/:id', (req, res) => {
   const { id } = req.params;
   const { completed } = req.body;
@@ -48,7 +52,7 @@ app.put('/tasks/:id', (req, res) => {
   res.json({ message: 'Task updated' });
 });
 
-// 削除（DELETE）
+// DELETE
 app.delete('/tasks/:id', (req, res) => {
   const { id } = req.params;
 

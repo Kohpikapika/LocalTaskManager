@@ -1,5 +1,6 @@
 ## What
-Simple task management API using SQLite.
+Simple task management API using SQLite.  
+This project uses ES Modules (import/export).
 
 ## Features
 - Create tasks
@@ -51,6 +52,11 @@ sqlite3 db.sqlite ".read seed.sql"
 3. Start dev server
 ```bash
 npm run dev
+```
+
+## How to reset tasks
+```bash
+sqlite3 db.sqlite ".read reset.sql"
 ```
 
 ## Next
