@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tasks</title>
+  <title>Tasks API Tester</title>
 </head>
 <body>
-  <h1>Task List</h1>
-  <ul id="list"></ul>
+  <h1>Tasks API Tester</h1>
 
-  <script>
-    fetch("http://localhost:3000/tasks")
-      .then(res => res.json())
-      .then(data => {
-        const ul = document.getElementById("list");
-        data.forEach(todo => {
-          const li = document.createElement("li");
-          li.textContent = todo.title;
-          ul.appendChild(li);
-        });
-      });
-  </script>
+  <!-- GET /tasks -->
+  <section>
+    <h2>GET /tasks</h2>
+    <button id="getTasksBtn">Fetch Tasks</button>
+    <pre id="tasksResult"></pre>
+  </section>
+
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
