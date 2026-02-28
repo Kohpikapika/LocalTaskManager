@@ -1,4 +1,19 @@
-# database
-db.sqlite
+# Node modules
+node_modules/
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+
+# Environment config
+.env
+
+# SQLite DB files (optional)
 *.sqlite
 *.db
+
+# OS and editor temp files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
