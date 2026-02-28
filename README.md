@@ -1,20 +1,28 @@
+# Tasks API Tester
+A minimal full-stack app to test CRUD operations with a REST API and web UI.  
+This project focuses on practical API design and frontend integration.  
+
+![Tasks API UI](./screenshot.png)
+
 ## What
-Simple task management API using SQLite.  
-This project uses ES Modules (import/export).
+A simple task management API backed by SQLite.  
+Built with ES Modules (import/export) and a minimal browser-based UI.
 
 ## Features
 - Create tasks
 - List tasks
 - Persistent storage with SQLite
+- All operations can be executed from the browser UI
+- Full CRUD operations via REST API
 
 ## Why
-To understand basic database operations
-and backend fundamentals.
+To practice real-world CRUD workflows
+and backend API design.
 
 ## Tech
 - Node.js
 - Express
-- SQLite
+- SQLite (persistent local database)
 
 ## API Endpoints
 - GET /tasks
@@ -53,11 +61,13 @@ sqlite3 db.sqlite ".read seed.sql"
 ```bash
 npm run dev
 ```
+The frontend is served from the same Express server.
 
 ## How to reset tasks
 ```bash
 sqlite3 db.sqlite ".read reset.sql"
 ```
 
-## Next
-- Connect with frontend
+## Possible Improvements
+- Improve frontend UI
+- Add validation and error handling
